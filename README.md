@@ -4,5 +4,5 @@ Esse é o resultado da parte de programação do Trabalho da disciplina de Siste
 Para compilar use :gcc TrabalhoProgramacao.c -o [nome do .exe] -pthread
 
 O programa aceita dois argumentos:
-  1. Quantidades de usuários
-  2. Números de entregas que vão ser feitas
+  1.int: Quantidades de usuários
+  2.int: Números de entregas que vão ser feitas
