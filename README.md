@@ -11,7 +11,7 @@ Onde "saida" é o nome do .exe criado na compilação
 
 O programa aceita dois argumentos:
   
-  1.int: Quantidades de usuários
+	1.int: Quantidades de usuários
   
   2.int: Número máximo de entregas que vão ser feitas
 
