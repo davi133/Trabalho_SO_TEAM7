@@ -35,17 +35,18 @@ int main(int argc, char *argv[])
 	
 	srand(time(NULL));
 	
-	sem_init(&sairEntrega, 0, 0);
-	sem_init(&suaVez, 0, 1);
-	sem_init(&pomboVoltou,0 ,0);
+	//Iniciando os semáforos
+	sem_init(&sairEntrega, 0, 0); //De início o pombo tem que esperar para sair para a entrega, então começa em 0
+	sem_init(&suaVez, 0, 1); //O primeiro usuário não tem que esperar nada para poder colar os postitis, então começa em 1
+	sem_init(&pomboVoltou,0 ,0); //O usuário que acordar o pombo vai espera-lo voltar, então começa em 0
 	
 	//Criando a thread do pombo
 	pthread_t pombo_t;
 	pthread_create(&pombo_t,NULL,pombo,NULL);
 	
-	//Criando as threads dos usuários
+	//Criando quantas threads de usuário são indicadas pelo argv[1]
 	pthread_t pessoas[NUM_usuarios];
-	int userID[NUM_usuarios];
+	int userID[NUM_usuarios];//Como a thread recebe os argumentos por referencia, cada ID teve que ser uma variável diferente
 	
 	for(int i=0;i<NUM_usuarios;i++)
 	{
@@ -54,8 +55,8 @@ int main(int argc, char *argv[])
 	}
 	
 	
+	//Esperando todas as threads terminarem antes de terminar o programa
 	pthread_join(pombo_t,NULL);
-	
 	for(int i=0;i<NUM_usuarios;i++)
 	{
 		pthread_join(pessoas[i],NULL);
@@ -82,10 +83,10 @@ void leva_mochila_ate_B_e_volta()
 
 void *usuario(void *arg)
 {	
-	int *tid = (int*)arg;//Thread ID
+	int *tid = (int*)arg;//Thread ID: Número que identifica o usuário
 	while(1)
 	{	
-		dorme_aleatorio();
+		dorme_aleatorio();//Tempo do usuário escrever uma mensagem e leva-la ao pombo
 		
 		sem_wait(&suaVez);
 		
@@ -102,6 +103,7 @@ void *usuario(void *arg)
 		
 		printf("Usuario %2d colou um Post-it - Post-its colados: %2d\n", *tid, contPostIt);
 		
+		//Verificando se 20 postits foram colados
 		if (contPostIt == N)
 		{			
 			printf("\nMochila cheia\n");		
@@ -119,10 +121,10 @@ void *pombo(void *arg)
 {	
 	while(1)
 	{
-		sem_wait(&sairEntrega);
+		sem_wait(&sairEntrega);// O pombo deve esperar ser acordado por um usuário
 		printf("Pombo saiu para entrega\n\n");
 		
-		leva_mochila_ate_B_e_volta();
+		leva_mochila_ate_B_e_volta(); //Esperar o tempo necessário para o pombo ir e voltar
 		contPostIt = 0;
 		
 		for (int i=0; i<N; i++)
@@ -130,11 +132,13 @@ void *pombo(void *arg)
 			printf("Adic. msg %d\n", i);
 		}
 		
+		
 		entregasFeitas +=1;
 		printf("\nPombo voltou da entrega\n");
 		printf("entrgas feitas:%d\n\n",entregasFeitas);
 		
-		sem_post(&pomboVoltou);
+		
+		sem_post(&pomboVoltou);// O pombo avisa que voltou e os usuários podem voltar a colar postitis
 		
 		//Condição para encerrar a thread
 		if(entregasFeitas >= maximoDeEntregas)
