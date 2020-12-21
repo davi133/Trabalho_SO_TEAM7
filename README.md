@@ -4,7 +4,7 @@ Esse é o resultado da parte de programação do Trabalho da disciplina de Siste
 O código fonte está em /home/ubuntu/trabProg na instâncio da AWS
 
 Para ir até o código fonte use:	
-	cd /home/ubuntu/trabProg
+	 cd /home/ubuntu/trabProg
 
 Para compilar use: gcc trabProg.c -o saida -pthread
 
