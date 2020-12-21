@@ -26,10 +26,12 @@ sem_t pomboVoltou;//Semáforo para deixar os usuários voltarem a colar quando o
 int main(int argc, char *argv[])
 {
 	if (argv[1]!=NULL)
+	{
 		NUM_usuarios = atoi(argv[1]);
 		
-	if (argv[2]!=NULL)
-		maximoDeEntregas = atoi(argv[2]);
+		if (argv[2]!=NULL)
+			maximoDeEntregas = atoi(argv[2]);
+	}
 	
 	srand(time(NULL));
 	
