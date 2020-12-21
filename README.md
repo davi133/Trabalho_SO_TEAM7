@@ -3,7 +3,8 @@ Esse é o resultado da parte de programação do Trabalho da disciplina de Siste
 
 O código fonte está em /home/ubuntu/trabProg na instâncio da AWS
 
-Para ir até o código fonte use: cd /home/ubuntu/trabProg
+Para ir até o código fonte use:
+	cd /home/ubuntu/trabProg
 
 Para compilar use: gcc trabProg.c -o saida -pthread
 
@@ -13,7 +14,7 @@ O programa aceita dois argumentos:
   
 	1.int: Quantidades de usuários
   
-  2.int: Número máximo de entregas que vão ser feitas
+ 	2.int: Número máximo de entregas que vão ser feitas
 
 Nenhum argumento é obrigatório. Se o usuário não usar nenhum argumento o programa vai funcionar perfeitamente com os valores padrões,
 que são 5 usuários e 5 entregas
