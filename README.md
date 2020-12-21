@@ -17,4 +17,4 @@ O programa aceita dois argumentos:
  	2.int: Número máximo de entregas que vão ser feitas
 
 Nenhum argumento é obrigatório. Se o usuário não usar nenhum argumento o programa vai funcionar perfeitamente com os valores padrões,
-que são 5 usuários e 5 entregas
+que são 5 usuários e 5 entrega
