@@ -1,7 +1,7 @@
 # Trabalho_SO_TEAM7
 Esse é o resultado da parte de programação do Trabalho da disciplina de Sistemas Operacionais (TT304).
 
-O código fonte está em /home/ubuntu/trabProg na instâncio da AWS
+O código fonte está em /home/ubuntu/trabProg na instância da AWS
 
 Para ir até o código fonte use:	cd /home/ubuntu/trabProg
 
